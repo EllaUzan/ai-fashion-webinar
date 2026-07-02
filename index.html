@@ -239,45 +239,7 @@
       line-height: 1;
     }
 
-    form {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    label {
-      display: grid;
-      gap: 6px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    input {
-      width: 100%;
-      min-height: 48px;
-      border: 1px solid rgba(17, 17, 17, .2);
-      background: #fbfaf7;
-      padding: 10px 12px;
-      font: inherit;
-      color: var(--ink);
-      outline: none;
-    }
-
-    input:focus {
-      border-color: var(--ink);
-      background: white;
-    }
-
-    .success {
-      display: none;
-      padding: 13px 14px;
-      border: 1px solid rgba(216, 75, 56, .34);
-      background: rgba(216, 75, 56, .08);
-      font-weight: 800;
-    }
-
-    .success.visible { display: block; }
+    .signup .btn { margin-top: 20px; }
 
     footer {
       padding: 28px 0 0;
@@ -371,7 +333,7 @@
             <span>אונליין</span>
           </div>
           <div class="actions">
-            <a class="btn" href="#signup">אני בא/ה, שריינו לי מקום</a>
+            <a class="btn" href="https://pay.grow.link/NTk0OTY~bc39966fd6b4fba5d805028234c62ebc-MzYzOTQ3Mg">אני בא/ה, שריינו לי מקום</a>
             <span class="quiet">וובינר קצר, פרקטי, ובלי לצאת מהמזגן.</span>
           </div>
         </header>
@@ -396,43 +358,13 @@
 
         <section class="signup" id="signup" aria-label="הרשמה">
           <h2>בא לכם לבוא?</h2>
-          <p>תשאירו פרטים פה למטה ותשריינו מקום.</p>
-          <form id="signup-form">
-            <label>
-              שם
-              <input name="name" autocomplete="name" required>
-            </label>
-            <label>
-              אימייל
-              <input name="email" type="email" autocomplete="email" required>
-            </label>
-            <label>
-              טלפון
-              <input name="phone" type="tel" autocomplete="tel">
-            </label>
-            <button class="btn" type="submit">אני בא/ה, שריינו לי מקום</button>
-            <div class="success" id="success-msg" role="status">מעולה, נשמרת הרשמה מקומית. עכשיו רק צריך לחבר את הטופס למערכת האמיתית.</div>
-          </form>
+          <p>תלחצו כאן ותעברו לעמוד התשלום כדי לשריין מקום.</p>
+          <a class="btn" href="https://pay.grow.link/NTk0OTY~bc39966fd6b4fba5d805028234c62ebc-MzYzOTQ3Mg">אני בא/ה, קחו אותי לתשלום</a>
         </section>
 
         <footer>בינה ואופנה | 15.7 | 12:00</footer>
       </div>
     </main>
   </div>
-
-  <script>
-    const form = document.querySelector("#signup-form");
-    const success = document.querySelector("#success-msg");
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
-      const signups = JSON.parse(localStorage.getItem("aiFashionWebinarSignups") || "[]");
-      signups.push({ ...data, createdAt: new Date().toISOString() });
-      localStorage.setItem("aiFashionWebinarSignups", JSON.stringify(signups));
-      form.reset();
-      success.classList.add("visible");
-    });
-  </script>
 </body>
 </html>
