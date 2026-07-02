@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>בינה ואופנה | וובינר</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111111'/%3E%3Cpath d='M18 49 31 14h3l12 35h-7l-2-7H27l-2 7h-7Zm11-13h6l-3-10-3 10Z' fill='%23f7f4ee'/%3E%3C/svg%3E">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
+
+    :root {
+      --paper: #f7f4ee;
+      --ink: #111;
+      --muted: #716d66;
+      --soft: #e8e1d6;
+      --line: rgba(17, 17, 17, .14);
+      --accent: #d84b38;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Heebo", Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(310px, 38vw) minmax(0, 1fr);
+    }
+
+    .visual {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: clamp(18px, 3vw, 44px);
+      border-left: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slideshow {
+      position: relative;
+      width: min(430px, 100%);
+      aspect-ratio: 3 / 4.35;
+      background: #ddd5ca;
+      overflow: hidden;
+    }
+
+    .slideshow img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.04);
+      animation: fade 30s infinite;
+      filter: contrast(1.02);
+    }
+
+    .slideshow img:nth-child(2) { animation-delay: 5s; }
+    .slideshow img:nth-child(3) { animation-delay: 10s; }
+    .slideshow img:nth-child(4) { animation-delay: 15s; }
+    .slideshow img:nth-child(5) { animation-delay: 20s; }
+    .slideshow img:nth-child(6) { animation-delay: 25s; }
+
+    @keyframes fade {
+      0% { opacity: 0; transform: scale(1.04); }
+      5% { opacity: 1; }
+      17% { opacity: 1; }
+      22% { opacity: 0; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1); }
+    }
+
+    .content {
+      padding: clamp(24px, 5vw, 82px);
+    }
+
+    .inner {
+      width: min(760px, 100%);
+      margin-inline: auto;
+    }
+
+    header {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 26px;
+      padding: 34px 0 58px;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: .94;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      display: block;
+      margin-top: 12px;
+      font-size: clamp(23px, 3vw, 34px);
+      line-height: 1.08;
+      font-weight: 700;
+    }
+
+    .intro {
+      max-width: 660px;
+      margin: 0;
+      font-size: clamp(19px, 2vw, 24px);
+      line-height: 1.7;
+    }
+
+    .date {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 8px 0 0;
+    }
+
+    .date span {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .42);
+      font-weight: 800;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 13px 26px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: white;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: #272727;
+    }
+
+    .quiet {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    section {
+      padding: 56px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .copy {
+      display: grid;
+      gap: 20px;
+      font-size: clamp(18px, 1.6vw, 21px);
+    }
+
+    .copy p,
+    .copy h2,
+    .copy h3 {
+      margin: 0;
+    }
+
+    .copy h2 {
+      margin-top: 8px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.02;
+      font-weight: 900;
+    }
+
+    .copy h3 {
+      margin-top: 18px;
+      font-size: clamp(22px, 2.3vw, 29px);
+      line-height: 1.16;
+      font-weight: 900;
+    }
+
+    .highlight {
+      padding: 22px 24px;
+      border-right: 4px solid var(--accent);
+      background: rgba(255, 255, 255, .46);
+      font-size: clamp(19px, 2vw, 24px);
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .signup {
+      margin-top: 36px;
+      padding: clamp(22px, 3vw, 34px);
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .signup h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 3.6vw, 44px);
+      line-height: 1;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid rgba(17, 17, 17, .2);
+      background: #fbfaf7;
+      padding: 10px 12px;
+      font: inherit;
+      color: var(--ink);
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--ink);
+      background: white;
+    }
+
+    .success {
+      display: none;
+      padding: 13px 14px;
+      border: 1px solid rgba(216, 75, 56, .34);
+      background: rgba(216, 75, 56, .08);
+      font-weight: 800;
+    }
+
+    .success.visible { display: block; }
+
+    footer {
+      padding: 28px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .page {
+        display: block;
+      }
+
+      .visual {
+        position: relative;
+        height: auto;
+        padding: 18px 18px 0;
+        border-left: 0;
+      }
+
+      .slideshow {
+        width: min(420px, 100%);
+        aspect-ratio: 4 / 5;
+      }
+
+      .content {
+        padding: 24px 18px 48px;
+      }
+
+      header {
+        min-height: auto;
+        padding: 42px 0 54px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .visual {
+        padding-top: 12px;
+      }
+
+      .slideshow {
+        width: 100%;
+        max-height: 48vh;
+      }
+
+      h1 {
+        font-size: clamp(40px, 13vw, 58px);
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slideshow img {
+        animation: none;
+      }
+
+      .slideshow img:first-child {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="visual" aria-label="תמונות קמפיין מתחלפות">
+      <div class="slideshow">
+        <img src="assets/5.png" alt="פורטרט אופנה בגווני ורוד בהיר">
+        <img src="assets/4.png" alt="פורטרט אופנה בשחור לבן">
+        <img src="assets/3.png" alt="דימוי אופנה בארמון עם נעלי ספורט">
+        <img src="assets/2.png" alt="קהל אופנתי בתנועה">
+        <img src="assets/6.png" alt="קמפיין אופנה בשחור לבן בשדה">
+        <img src="assets/1.png" alt="קמפיין אופנה בשדה כבשים">
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="inner">
+        <header>
+          <div class="kicker">וובינר חי | 15.7 | 12:00 בצהריים</div>
+          <h1>
+            בינה ואופנה
+            <span class="subtitle">איך ליצור קמפיינים בבינה מלאכותית ולצאת מזה בחיים</span>
+          </h1>
+          <p class="intro">על בינה, אופנה, ומה שביניהם. בלי מילים טכניות מבהילות, בלי הסברים של מהנדסים, ועם הרבה יצירה, אמנות, אינטואיציה וסטייל.</p>
+          <div class="date" aria-label="פרטי הוובינר">
+            <span>15.7</span>
+            <span>12:00</span>
+            <span>אונליין</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="#signup">אני בא/ה, שריינו לי מקום</a>
+            <span class="quiet">וובינר קצר, פרקטי, ובלי לצאת מהמזגן.</span>
+          </div>
+        </header>
+
+        <section class="copy" aria-label="על הוובינר">
+          <p>תראו, במשך יותר מעשור הייתי צלמת אופנה וארט דירקטורית. זה אומר שביליתי חלק ניכר מהחיים שלי בלקום בשעות לא הגיוניות, להיות תלויה בחסדי מזג האוויר, ובעיקר לקוות שהמציאות תסכים לשתף פעולה עם הוויז'ן שיש לי בראש.</p>
+          <p>אנשים קראו לזה "זוהר", אני קראתי לזה "מתי כבר אפשר ללכת לנוח".</p>
+          <p>ואז הגיעה הבינה המלאכותית.</p>
+          <p>ופתאום, קלטתי שאני יכולה לברוא עולמות ויזואליים שלמים, להפיק קמפיינים מהפנטים ולייצר אסתטיקה קולנועית מטורפת בלי לצאת מהמזגן. ובלי להתפשר על טיפה של סטייל או טעם אישי.</p>
+          <p class="highlight">זה קצת הרגיש כמו לרמות, אבל בקטע הכי טוב שיש.</p>
+          <p>אז ב-15.7, בשעה 12:00 בצהריים, אני עושה וובינר.</p>
+          <h2>תכלס, מה יהיה שם?</h2>
+          <h3>טריקים ושיטות</h3>
+          <p>איך באמת לגרום למכונה להוציא את מה שאתם מדמיינים. ובלי מילים טכניות מבהילות או הסברים של מהנדסים, נטו יצירה, אמנות ואינטואיציה.</p>
+          <h3>ארגז הכלים</h3>
+          <p>נדבר על הכלים הכי מתקדמים שיש היום בשוק, שזה נשמע קצת כמו משפט של אנשי מכירות, אבל הם באמת מתקדמים וחשוב להכיר אותם.</p>
+          <h3>השואו האמיתי</h3>
+          <p>אני הולכת לחשוף מערכת שיצרתי. אתם מכניסים אליה מוצר אחד בודד, וצוות שלם של סוכני בינה מלאכותית פשוט בונה סביבו עולם קריאייטיבי שלם.</p>
+          <p class="highlight">כן, זה פסיכי בדיוק כמו שזה נשמע.</p>
+          <p>אם אתם יוצרים, מעצבים, אנשי קריאייטיב, או סתם אנשים שרוצים להבין איך עושים את זה נכון, ממש אשמח שתבואו.</p>
+          <p>ואם לא, הכל טוב, נשאר לי רק לאחל לכם בהצלחה עם הפקות האופנה שלכם בחוץ בחום של יולי.</p>
+        </section>
+
+        <section class="signup" id="signup" aria-label="הרשמה">
+          <h2>בא לכם לבוא?</h2>
+          <p>תשאירו פרטים פה למטה ותשריינו מקום.</p>
+          <form id="signup-form">
+            <label>
+              שם
+              <input name="name" autocomplete="name" required>
+            </label>
+            <label>
+              אימייל
+              <input name="email" type="email" autocomplete="email" required>
+            </label>
+            <label>
+              טלפון
+              <input name="phone" type="tel" autocomplete="tel">
+            </label>
+            <button class="btn" type="submit">אני בא/ה, שריינו לי מקום</button>
+            <div class="success" id="success-msg" role="status">מעולה, נשמרת הרשמה מקומית. עכשיו רק צריך לחבר את הטופס למערכת האמיתית.</div>
+          </form>
+        </section>
+
+        <footer>בינה ואופנה | 15.7 | 12:00</footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const form = document.querySelector("#signup-form");
+    const success = document.querySelector("#success-msg");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const signups = JSON.parse(localStorage.getItem("aiFashionWebinarSignups") || "[]");
+      signups.push({ ...data, createdAt: new Date().toISOString() });
+      localStorage.setItem("aiFashionWebinarSignups", JSON.stringify(signups));
+      form.reset();
+      success.classList.add("visible");
+    });
+  </script>
+</body>
+</html>
